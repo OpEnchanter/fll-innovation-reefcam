@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .card {
+                width: 100px;
+                aspect-ratio: 3/5;
+                border-radius: 10px;
+                margin: 10px;
+                border: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header"></div>
+        <div class="tabBar"></div>
+        <div class="content" id="cont"></div>
+
+        <script>
+            videos = [
+                "vid",
+                "vid1",
+                "vid2",
+                "vid3",
+                "vid4"
+            ];
+
+            lives = [
+
+            ];
+
+            function gotoVideos() {
+                const content = document.getElementById("cont");
+                content.innerHTML = "";
+                for (const video of videos) {
+                    content.innerHTML += `<button class='card' onclick="window.location.href='watch/?video=${video}'">`
+                }
+            }
+
+            function gotoLive() {
+
+            }
+
+            gotoVideos();
+        </script>
+    </body>
+</html>

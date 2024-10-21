@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            html {
+                overflow: hidden;
+            }
+
+            body {
+                width: 100%;
+                height: 100vh;
+                position: relative;
+                margin: 0; /* Ensure no margin */
+            }
+
+            .video {
+                width: 95%;
+                height: 95%;
+                background-color: black;
+                border-radius: 10px;
+                position: absolute;
+                top: 2.5%; /* Center the video div vertically */
+                left: 2.5%; /* Center the video div horizontally */
+                overflow: hidden;
+            }
+
+            .capture {
+                border-radius: 100%;
+                width: 75px;
+                aspect-ratio: 1/1;
+                border-width: 10px;
+                border-style: solid;
+                background-color: rgba(175, 175, 175, 0.85);
+                border-color: rgba(100, 100, 100, 0.85);
+                transition-duration: 100ms;
+                position: absolute;
+                top: 85%;
+                left: 50%;
+                transform: translate(-50%, -50%); /* Center the button */
+            }
+            
+            .capture:active {
+                border-width: 0px;
+            }
+
+            .videoControl {
+                border-radius: 100%;
+                width: 45px;
+                aspect-ratio: 1/1;
+                border-width: 10px;
+                border-style: solid;
+                background-color: rgba(175, 175, 175, 0.85);
+                border-color: rgba(100, 100, 100, 0.85);
+                transition-duration: 100ms;
+                position: absolute;
+                top: 85%;
+                left: 50%;
+                transform: translate(-50%, -50%); /* Center the button */
+                transform: translate(-67px, -67px);
+            }
+
+            .videoControl:active {
+                border-width: 0px;
+            }
+
+            img {
+                width: 25px;
+                aspect-ratio: 1/1;
+                position: absolute;
+                transform: translate(-50%, -50%);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="video">
+            <video width="100%" height="100%" loop>
+                <source src="" type="video/mp4" id="vid">
+            </video>
+            <button class="capture">
+                <img src="../resources/capture.png">
+            </button>
+
+            <button class="videoControl" onclick="changeVideoState()">
+                <img style="width:15px;" src="../resources/play.png" id="controlIco">
+            </button>
+        </div>
+
+        <script>
+            const url = new URL(window.location.href);
+            const params = new URLSearchParams(url.search);
+
+            const video = document.getElementById("vid");
+            video.src = "../resources/" + params.get("video") + ".mp4";
+            
+
+            function changeVideoState() {
+                if (video.paused) {
+                    video.play();
+                    document.getElementById("controlIco").src = "../resources/pause.png";
+                } else {
+                    video.pause();
+                    document.getElementById("controlIco").src = "../resources/play.png";
+                }
+            }
+
+            changeVideoState()
+        </script>
+    </body>
+</html>
