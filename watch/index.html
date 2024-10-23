@@ -89,7 +89,7 @@
             const url = new URL(window.location.href);
             const params = new URLSearchParams(url.search);
 
-            const video = document.getElementById("vid");
+            var video = document.getElementById("vid");
             video.src = "../resources/" + params.get("video") + ".mp4";
             
 
