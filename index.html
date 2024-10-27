@@ -2,13 +2,26 @@
 <html>
     <head>
         <style>
+            html {
+                overflow-y: hidden;
+            }
+
+            body {
+                background: linear-gradient(to bottom, rgb(0, 0, 25), rgb(0,0,75));
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
             .card {
-                width: 100px;
-                aspect-ratio: 3/5;
+                width: 150px;
+                aspect-ratio: 5/7;
                 border-radius: 10px;
                 margin: 10px;
                 border: none;
                 transition-duration: 0.1s;
+                background-color: rgb(100, 100, 100);
             }
 
             .card:hover {
@@ -20,33 +33,33 @@
         <div class="header"></div>
         <div class="tabBar"></div>
         <div class="content" id="cont"></div>
-
-        <script>
-            videos = [
-                "vid",
-                "vid1",
-                "vid2",
-                "vid3",
-                "vid4"
-            ];
-
-            lives = [
-
-            ];
-
-            function gotoVideos() {
-                const content = document.getElementById("cont");
-                content.innerHTML = "";
-                for (const video of videos) {
-                    content.innerHTML += `<button class='card' onclick="window.location.href='watch/?video=${video}'">`
-                }
-            }
-
-            function gotoLive() {
-
-            }
-
-            gotoVideos();
-        </script>
     </body>
+
+    <script>
+        videos = [
+            "vid",
+            "vid1",
+            "vid2",
+            "vid3",
+            "vid4"
+        ];
+
+        lives = [
+
+        ];
+
+        function gotoVideos() {
+            const content = document.getElementById("cont");
+            content.innerHTML = "";
+            for (const video of videos) {
+                content.innerHTML += `<button class='card' onclick="window.location.href='watch/?video=${video}'">`
+            }
+        }
+
+        function gotoLive() {
+
+        }
+
+        gotoVideos();
+    </script>
 </html>

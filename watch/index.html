@@ -11,6 +11,7 @@
                 height: 100vh;
                 position: relative;
                 margin: 0; /* Ensure no margin */
+                background: linear-gradient(to bottom, rgb(0, 0, 25), rgb(0,0,75));
             }
 
             .video {
@@ -55,11 +56,48 @@
                 position: absolute;
                 top: 85%;
                 left: 50%;
-                transform: translate(-50%, -50%); /* Center the button */
-                transform: translate(-67px, -67px);
+                transform: translate(-155%, -150%); /* Center the button */
             }
 
             .videoControl:active {
+                border-width: 0px;
+            }
+
+            .rewind {
+                border-radius: 100%;
+                width: 45px;
+                aspect-ratio: 1/1;
+                border-width: 10px;
+                border-style: solid;
+                background-color: rgba(175, 175, 175, 0.85);
+                border-color: rgba(100, 100, 100, 0.85);
+                transition-duration: 100ms;
+                position: absolute;
+                top: 85%;
+                left: 50%;
+                transform: translate(-155%, 50%); /* Center the button */
+            }
+
+            .rewind:active {
+                border-width: 0px;
+            }
+
+            .fastForward {
+                border-radius: 100%;
+                width: 45px;
+                aspect-ratio: 1/1;
+                border-width: 10px;
+                border-style: solid;
+                background-color: rgba(175, 175, 175, 0.85);
+                border-color: rgba(100, 100, 100, 0.85);
+                transition-duration: 100ms;
+                position: absolute;
+                top: 85%;
+                left: 50%;
+                transform: translate(-195%, -50%); /* Center the button */
+            }
+
+            .fastForward:active {
                 border-width: 0px;
             }
 
@@ -69,41 +107,81 @@
                 position: absolute;
                 transform: translate(-50%, -50%);
             }
+
+            #pBar {
+                height: 20px;
+                width: 100%;
+                background: linear-gradient(to right, rgb(0, 50,  0), rgb(0, 100, 0));
+                position: absolute;
+                top: 100%;
+                transform: translateY(-10px);
+                transition-duration: 50ms;
+                border-radius: 15px;
+            }
         </style>
     </head>
     <body>
         <div class="video">
-            <video width="100%" height="100%" loop>
+            <video id="videoElement" width="100%" height="100%" loop>
                 <source src="" type="video/mp4" id="vid">
             </video>
             <button class="capture">
                 <img src="../resources/capture.png">
             </button>
-
+        
             <button class="videoControl" onclick="changeVideoState()">
                 <img style="width:15px;" src="../resources/play.png" id="controlIco">
             </button>
-        </div>
 
+            <button class="fastForward" onclick="rewind()">
+                <img style="width:15px;" src="../resources/rewind.png" id="rewindIco">
+            </button>
+            
+
+            <button class="rewind" onclick="fast_forward()">
+                <img style="width:15px;" src="../resources/fast_forward.png" id="fastForwardIco">
+            </button>
+
+            
+
+            <div id="pBar"></div>
+        </div>
+        
         <script>
             const url = new URL(window.location.href);
             const params = new URLSearchParams(url.search);
-
-            var video = document.getElementById("vid");
-            video.src = "../resources/" + params.get("video") + ".mp4";
-            
-
+        
+            var videoElement = document.getElementById("videoElement"); // Get the <video> element
+            var sourceElement = document.getElementById("vid");
+            sourceElement.src = "../resources/" + params.get("video") + ".mp4";
+            videoElement.load(); // Load the new source
+        
             function changeVideoState() {
-                if (video.paused) {
-                    video.play;
+                if (videoElement.paused) {
+                    videoElement.play(); // Correctly call play()
                     document.getElementById("controlIco").src = "../resources/pause.png";
                 } else {
-                    video.pause;
+                    videoElement.pause(); // Correctly call pause()
                     document.getElementById("controlIco").src = "../resources/play.png";
                 }
             }
 
-            changeVideoState()
+            function updateProgressBar() {
+                progress = videoElement.currentTime / videoElement.duration;
+
+                var progressBar = document.getElementById("pBar");
+                progressBar.style.width = `${progress*100}%`;
+            }
+
+            function rewind() {
+                videoElement.currentTime -= 1;
+            }
+
+            function fast_forward() {
+                videoElement.currentTime += 1;
+            }
+
+            setInterval(updateProgressBar, 10)
         </script>
     </body>
 </html>
