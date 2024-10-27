@@ -185,6 +185,16 @@
             .submitButton:hover {
                 background-color: rgb(0, 100, 0);
             }
+
+            .fishList {
+                height: 150px;
+                width: 75%;
+                overflow-y: scroll;
+                background-color: gray;
+                font-family: sans-serif;
+                margin-top: 15px;
+                border-radius: 10px;
+            }
         </style>
     </head>
     <body>
@@ -202,7 +212,7 @@
 
             <button class="fastForward" onclick="rewind()">
                 <img style="width:15px;" src="../resources/rewind.png" id="rewindIco">
-            </button>
+            </button>       
             
 
             <button class="rewind" onclick="fast_forward()">
@@ -223,6 +233,41 @@
             <textarea class="infoInput" placeholder="Explain what you see..." wrap="hard"></textarea>
 
             <button class="submitButton">Submit</button>
+
+            <div class="fishList">
+                <ul>
+                    <li>Gray Triggerfish • Balistes Capriscus</li>
+                    <li>Lesser Amberjack • Seriola Dumerilli</li>
+                    <li>Alamaco Jack • Seriola Rivoliana</li>
+                    <li>Banded Rudderfish • Seriola Zonata</li>
+                    <li>Hogfish • Lachnolaimus Maximus</li>
+                    <li>Golden Tilefish • Lopholatilus Chamaeleonticeps</li>
+                    <li>Blueline Tilefish • Caulolatilus Microps</li>
+                    <li>Goldface Tilefish • Caulolatilus Chrysops</li>
+                    <li>Gag • Mycteropercca Microlepis</li>
+                    <li>Red Grouper • Ephinephelus Morio</li>
+                    <li>Scamp • Mycteroperca Phenax</li>
+                    <li>Black Grouper • Mycteroperca Bonaci</li>
+                    <li>Yellowedge Grouper • Hyporthodus Flavolimbatus</li>
+                    <li>Snowy Grouper • Hyporthodus Niveatus</li>
+                    <li>Speckled Hind • Ephinephelus Drummondhayi</li>
+                    <li>Yellowmouth Grouper • Mycteroperca Interstitialis</li>
+                    <li>Yellowfin Grouper • Mycteroperca Venenosa</li>
+                    <li>Warsaw Grouper • Hyporthodus Nigritus</li>
+                    <li>Atlantic Goliath Grouper • Ephinephelus Itajara</li>
+                    <li>Queen Snapper • Etilis Oculatus</li>
+                    <li>Mutton Snapper • Lutjanus Analis</li>
+                    <li>Blackfin Snapper • Lutjanus Buccanella</li>
+                    <li>Red Snapper • Lutjanus Camperchanus</li>
+                    <li>Cubera Snapper • Lutjanus Cyanopterus</li>
+                    <li>Gray Snapper • Lutjanus Griseus</li>
+                    <li>Lane Snapper • Lutjanus Synagris</li>
+                    <li>Silk Snapper • Lutjanus Vivanus</li>
+                    <li>Yellowtail Snapper • Ocyurus Chrysurus</li>
+                    <li>Vermillion Snapper • Rhomboplites Aurorubens</li>
+                    <li>Wrenchman • Pristipomoides Aquilonaris</li>
+                </ul>
+            </div>
         </div>
 
         <script>
