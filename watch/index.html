@@ -15,13 +15,24 @@
             }
 
             .video {
-                width: 95%;
+                width: 65%;
                 height: 95%;
                 background-color: black;
                 border-radius: 10px;
                 position: absolute;
                 top: 2.5%; /* Center the video div vertically */
                 left: 2.5%; /* Center the video div horizontally */
+                overflow: hidden;
+            }
+
+            .sideBar { 
+                width: 27%;
+                height: 95%;
+                background-color: black;
+                border-radius: 10px;
+                position: absolute;
+                top: 2.5%; /* Center the video div vertically */
+                left: 68.5%; /* Center the video div horizontally */
                 overflow: hidden;
             }
 
@@ -111,12 +122,11 @@
             #pBar {
                 height: 20px;
                 width: 100%;
-                background: linear-gradient(to right, rgb(0, 50,  0), rgb(0, 100, 0));
+                background: linear-gradient(to right, rgb(0, 50,  0), rgb(0, 150, 0));
                 position: absolute;
                 top: 100%;
                 transform: translateY(-10px);
-                transition-duration: 50ms;
-                border-radius: 15px;
+                border-radius: 0px;
             }
         </style>
     </head>
@@ -146,7 +156,9 @@
 
             <div id="pBar"></div>
         </div>
-        
+
+        <div class="sideBar"></div>
+
         <script>
             const url = new URL(window.location.href);
             const params = new URLSearchParams(url.search);
@@ -181,7 +193,7 @@
                 videoElement.currentTime += 1;
             }
 
-            setInterval(updateProgressBar, 10)
+            setInterval(updateProgressBar, 0)
         </script>
     </body>
 </html>
