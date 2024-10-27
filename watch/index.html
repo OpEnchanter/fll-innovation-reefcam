@@ -34,6 +34,9 @@
                 top: 2.5%; /* Center the video div vertically */
                 left: 68.5%; /* Center the video div horizontally */
                 overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
 
             .capture {
@@ -122,11 +125,65 @@
             #pBar {
                 height: 20px;
                 width: 100%;
-                background: linear-gradient(to right, rgb(0, 50,  0), rgb(0, 150, 0));
+                background: rgb(0, 150, 0);
                 position: absolute;
                 top: 100%;
                 transform: translateY(-10px);
                 border-radius: 0px;
+            }
+
+            #capturedImage {
+                width: 100%;
+                height: 100%;
+            }
+
+            .capturedImageContainer {
+                width: 75%;
+                height: 150px;
+                margin-top: 50px;
+                background-color: gray;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                vertical-align: center;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            .noImage {
+                transform: translate(25%, 25%);
+            }
+
+            button:hover {
+                cursor: pointer;
+            }
+
+            .infoInput {
+                margin-top: 15px;
+                width: 75%;
+                height: 150px;
+                border-radius: 10px;
+                font-family: sans-serif;
+                background-color: rgb(75, 75, 75);
+                color: white;
+                border: none;
+                resize: none;
+            }
+
+            .submitButton {
+                width: 75%;
+                height: 35px;
+                background-color: rgb(0, 150, 0);
+                color: black;
+                border-radius: 10px;
+                border: none;
+                margin-top: 15px;
+                font-size: 15px;
+                transition-duration: 200ms;
+            }
+
+            .submitButton:hover {
+                background-color: rgb(0, 100, 0);
             }
         </style>
     </head>
@@ -135,7 +192,7 @@
             <video id="videoElement" width="100%" height="100%" loop>
                 <source src="" type="video/mp4" id="vid">
             </video>
-            <button class="capture">
+            <button class="capture" onclick="captureImage()">
                 <img src="../resources/capture.png">
             </button>
         
@@ -157,16 +214,37 @@
             <div id="pBar"></div>
         </div>
 
-        <div class="sideBar"></div>
+        <div class="sideBar">
+            <div class="capturedImageContainer">
+                <canvas id="capturedImage" width="1920" height="1080"></canvas>
+                <img src="../resources/noimage.png" class="noImage" id="noImageIco">
+            </div>
+
+            <textarea class="infoInput" placeholder="Explain what you see..." wrap="hard"></textarea>
+
+            <button class="submitButton">Submit</button>
+        </div>
 
         <script>
             const url = new URL(window.location.href);
             const params = new URLSearchParams(url.search);
+
+            const noImageIco = document.getElementById("noImageIco");
         
             var videoElement = document.getElementById("videoElement"); // Get the <video> element
             var sourceElement = document.getElementById("vid");
             sourceElement.src = "../resources/" + params.get("video") + ".mp4";
             videoElement.load(); // Load the new source
+
+            function captureImage () {
+                const canvas = document.getElementById("capturedImage");
+                const context = canvas.getContext('2d');
+
+                context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+                
+                noImageIco.style = "display: none;";
+            }
         
             function changeVideoState() {
                 if (videoElement.paused) {
