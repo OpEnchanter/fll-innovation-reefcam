@@ -179,7 +179,7 @@
                 border: none;
                 margin-top: 15px;
                 font-size: 15px;
-                transition-duration: 200ms;
+                transition-duration: 150ms;
             }
 
             .submitButton:hover {
@@ -187,7 +187,7 @@
             }
 
             .fishList {
-                height: 150px;
+                height: 75px;
                 width: 75%;
                 overflow-y: scroll;
                 background-color: gray;
@@ -203,20 +203,20 @@
                 <source src="" type="video/mp4" id="vid">
             </video>
             <button class="capture" onclick="captureImage()">
-                <img src="../resources/capture.png">
+                <img src="../resources/icons/capture.png">
             </button>
         
             <button class="videoControl" onclick="changeVideoState()">
-                <img style="width:15px;" src="../resources/play.png" id="controlIco">
+                <img style="width:15px;" src="../resources/icons/play.png" id="controlIco">
             </button>
 
             <button class="fastForward" onclick="rewind()">
-                <img style="width:15px;" src="../resources/rewind.png" id="rewindIco">
+                <img style="width:15px;" src="../resources/icons/rewind.png" id="rewindIco">
             </button>       
             
 
             <button class="rewind" onclick="fast_forward()">
-                <img style="width:15px;" src="../resources/fast_forward.png" id="fastForwardIco">
+                <img style="width:15px;" src="../resources/icons/fast_forward.png" id="fastForwardIco">
             </button>
 
             
@@ -227,45 +227,16 @@
         <div class="sideBar">
             <div class="capturedImageContainer">
                 <canvas id="capturedImage" width="1920" height="1080"></canvas>
-                <img src="../resources/noimage.png" class="noImage" id="noImageIco">
+                <img src="../resources/icons/noimage.png" class="noImage" id="noImageIco">
             </div>
 
             <textarea class="infoInput" placeholder="Explain what you see..." wrap="hard"></textarea>
 
-            <button class="submitButton">Submit</button>
+            <button class="submitButton" onclick="window.location.href = '/submit'">Submit</button>
 
             <div class="fishList">
                 <ul>
-                    <li>Gray Triggerfish • Balistes Capriscus</li>
-                    <li>Lesser Amberjack • Seriola Dumerilli</li>
-                    <li>Alamaco Jack • Seriola Rivoliana</li>
-                    <li>Banded Rudderfish • Seriola Zonata</li>
-                    <li>Hogfish • Lachnolaimus Maximus</li>
-                    <li>Golden Tilefish • Lopholatilus Chamaeleonticeps</li>
-                    <li>Blueline Tilefish • Caulolatilus Microps</li>
-                    <li>Goldface Tilefish • Caulolatilus Chrysops</li>
-                    <li>Gag • Mycteropercca Microlepis</li>
-                    <li>Red Grouper • Ephinephelus Morio</li>
-                    <li>Scamp • Mycteroperca Phenax</li>
-                    <li>Black Grouper • Mycteroperca Bonaci</li>
-                    <li>Yellowedge Grouper • Hyporthodus Flavolimbatus</li>
-                    <li>Snowy Grouper • Hyporthodus Niveatus</li>
-                    <li>Speckled Hind • Ephinephelus Drummondhayi</li>
-                    <li>Yellowmouth Grouper • Mycteroperca Interstitialis</li>
-                    <li>Yellowfin Grouper • Mycteroperca Venenosa</li>
-                    <li>Warsaw Grouper • Hyporthodus Nigritus</li>
-                    <li>Atlantic Goliath Grouper • Ephinephelus Itajara</li>
-                    <li>Queen Snapper • Etilis Oculatus</li>
-                    <li>Mutton Snapper • Lutjanus Analis</li>
-                    <li>Blackfin Snapper • Lutjanus Buccanella</li>
-                    <li>Red Snapper • Lutjanus Camperchanus</li>
-                    <li>Cubera Snapper • Lutjanus Cyanopterus</li>
-                    <li>Gray Snapper • Lutjanus Griseus</li>
-                    <li>Lane Snapper • Lutjanus Synagris</li>
-                    <li>Silk Snapper • Lutjanus Vivanus</li>
-                    <li>Yellowtail Snapper • Ocyurus Chrysurus</li>
-                    <li>Vermillion Snapper • Rhomboplites Aurorubens</li>
-                    <li>Wrenchman • Pristipomoides Aquilonaris</li>
+                    
                 </ul>
             </div>
         </div>
@@ -278,7 +249,7 @@
         
             var videoElement = document.getElementById("videoElement"); // Get the <video> element
             var sourceElement = document.getElementById("vid");
-            sourceElement.src = "../resources/" + params.get("video") + ".mp4";
+            sourceElement.src = "../resources/videos/" + params.get("video") + ".mp4";
             videoElement.load(); // Load the new source
 
             function captureImage () {
@@ -294,10 +265,10 @@
             function changeVideoState() {
                 if (videoElement.paused) {
                     videoElement.play(); // Correctly call play()
-                    document.getElementById("controlIco").src = "../resources/pause.png";
+                    document.getElementById("controlIco").src = "../resources/icons/pause.png";
                 } else {
                     videoElement.pause(); // Correctly call pause()
-                    document.getElementById("controlIco").src = "../resources/play.png";
+                    document.getElementById("controlIco").src = "../resources/icons/play.png";
                 }
             }
 
