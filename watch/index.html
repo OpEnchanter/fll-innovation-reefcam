@@ -17,7 +17,7 @@
             .video {
                 width: 65%;
                 height: 95%;
-                background-color: black;
+                background-color: rgb(50, 50, 50);
                 border-radius: 10px;
                 position: absolute;
                 top: 2.5%; /* Center the video div vertically */
@@ -28,7 +28,7 @@
             .sideBar { 
                 width: 27%;
                 height: 95%;
-                background-color: black;
+                background-color: rgb(50, 50, 50);
                 border-radius: 10px;
                 position: absolute;
                 top: 2.5%; /* Center the video div vertically */
@@ -40,19 +40,23 @@
                 justify-content: center;
             }
 
+            .navBtn {
+                backdrop-filter: blur(10px);
+            }
+
             .capture {
                 border-radius: 100%;
                 width: 75px;
                 aspect-ratio: 1/1;
                 border-width: 10px;
                 border-style: solid;
-                background-color: rgba(175, 175, 175, 0.85);
+                background-color: rgba(175, 175, 175, 0.75);
                 border-color: rgba(100, 100, 100, 0.85);
                 transition-duration: 100ms;
                 position: absolute;
                 top: 85%;
                 left: 50%;
-                transform: translate(-50%, -50%); /* Center the button */
+                transform: translate(-50%, -50%) translateX(37.5px); /* Center the button */
             }
             
             .capture:active {
@@ -65,13 +69,13 @@
                 aspect-ratio: 1/1;
                 border-width: 10px;
                 border-style: solid;
-                background-color: rgba(175, 175, 175, 0.85);
+                background-color: rgba(175, 175, 175, 0.75);
                 border-color: rgba(100, 100, 100, 0.85);
                 transition-duration: 100ms;
                 position: absolute;
                 top: 85%;
                 left: 50%;
-                transform: translate(-155%, -150%); /* Center the button */
+                transform: translate(-155%, -150%) translateX(37.5px); /* Center the button */
             }
 
             .videoControl:active {
@@ -84,13 +88,13 @@
                 aspect-ratio: 1/1;
                 border-width: 10px;
                 border-style: solid;
-                background-color: rgba(175, 175, 175, 0.85);
+                background-color: rgba(175, 175, 175, 0.75);
                 border-color: rgba(100, 100, 100, 0.85);
                 transition-duration: 100ms;
                 position: absolute;
                 top: 85%;
                 left: 50%;
-                transform: translate(-155%, 50%); /* Center the button */
+                transform: translate(-155%, 50%) translateX(37.5px); /* Center the button */
             }
 
             .rewind:active {
@@ -103,13 +107,13 @@
                 aspect-ratio: 1/1;
                 border-width: 10px;
                 border-style: solid;
-                background-color: rgba(175, 175, 175, 0.85);
+                background-color: rgba(175, 175, 175, 0.75);
                 border-color: rgba(100, 100, 100, 0.85);
                 transition-duration: 100ms;
                 position: absolute;
                 top: 85%;
                 left: 50%;
-                transform: translate(-195%, -50%); /* Center the button */
+                transform: translate(-195%, -50%) translateX(37.5px); /* Center the button */
             }
 
             .fastForward:active {
@@ -243,21 +247,114 @@
             }
 
             .back {
-                border-radius: 5px;
-                background: linear-gradient(to bottom, rgb(0, 0, 100), rgb(0,0,175));
-                position: absolute;
-                width: 75px;
+                border-radius: 2.5px;
+                background-color: rgb(125, 125, 125);
+                position: relative;
+                width: 25px;
                 height: 25px;
                 border: none;
 
-                top: 5px;
-                left: 5px;
+                transition-duration: 150ms;
 
-                transition-duration: 500ms;
+                margin-right: 10px;
+
+                display: block;
+                align-items: center;
+                justify-content: center;
             }
 
             .back:hover {
-                color: lightgray;
+                background-color: rgb(75, 75, 75);
+            }
+
+            .options {
+                border-radius: 2.5px;
+                background-color: rgb(125, 125, 125);
+                position: relative;
+                width: 85px;
+                height: 25px;
+                border: none;
+
+                padding: 0px;
+
+                
+
+                transition-duration: 150ms;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: row;
+
+                z-index: 1000;
+            }
+
+            .options:hover {
+                background-color: rgb(75, 75, 75);
+            }
+
+            .options img {
+                position: relative;
+                width: 25px;
+                height: 25px;
+
+                left: calc(50% - 25px);
+                top: 50%;
+
+                transition-duration: 150ms;
+            }
+
+            .dropdown {
+                height: 0px;
+                width: 85px;
+                background-color: rgb(25, 25, 25);
+
+                left: 35px;
+                top: 12.5px;
+
+                position: absolute;
+
+                transition-duration: 150ms;
+
+                border-radius: 5px;
+
+                overflow: hidden;
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .dropdownBtn {
+                width: 90%;
+                height: 25px;
+
+                border-radius: 5px;
+
+                background-color: rgb(125, 125, 125);
+                margin-top: 10px;
+
+                border: none;
+
+                transition-duration: 150ms;
+            }
+
+            .dropdownBtn:hover {
+                background-color: rgb(100, 100, 100);
+            }
+
+            .dropdownFirst {
+                margin-top: 22.5px;
+            }
+
+            .topbar {
+                position: absolute;
+                left: 50%;
+                top: 5px;
+
+                display: flex;
+
+                background-color: rgba(0, 0, 0, 0);
             }
         </style>
     </head>
@@ -267,26 +364,35 @@
             <video id="videoElement" width="100%" height="100%" loop>
                 <source src="" type="video/mp4" id="vid">
             </video>
-            <button class="capture" onclick="captureImage()">
+            <button class="capture navBtn" onclick="captureImage()">
                 <img src="../resources/icons/capture.png">
             </button>
         
-            <button class="videoControl" onclick="changeVideoState()">
+            <button class="videoControl navBtn" onclick="changeVideoState()">
                 <img style="width:15px;" src="../resources/icons/play.png" id="controlIco">
             </button>
 
-            <button class="fastForward" onclick="rewind()">
+            <button class="fastForward navBtn" onclick="rewind()">
                 <img style="width:15px;" src="../resources/icons/rewind.png" id="rewindIco">
             </button>       
-            
 
-            <button class="rewind" onclick="fast_forward()">
+            <button class="rewind navBtn" onclick="fast_forward()">
                 <img style="width:15px;" src="../resources/icons/fast_forward.png" id="fastForwardIco">
             </button>
 
-            <button class="back" onclick="window.location.href='../'">Home</button>
 
-            
+            <div class="topbar">
+                <button class="back" onclick="window.location.href='../'">
+                    <img src="../resources/icons/home.png">
+                </button>
+                <button class="options" onclick="openDropdown()">
+                    <p>More</p>
+                    <img src="../resources/icons/dropdown.png" id="dropdownArrow">
+                </button>
+                <div class="dropdown" id="dropdown">
+                    <button class="dropdownBtn dropdownFirst"></button>
+                </div>
+            </div>
 
             <div id="pBar"></div>
         </div>
@@ -395,6 +501,22 @@
 
                 if (updStr == "") {
                     clearInterval(resetInterval);
+                }
+            }
+
+            const dropdownIco = document.getElementById("dropdownArrow");
+            const dropdown = document.getElementById("dropdown");
+            var dropdownOpen = false;
+
+            function openDropdown() {
+                if (dropdownOpen) {
+                    dropdownIco.style = "transform: translate(-50%, -50%) rotateZ(0deg);"
+                    dropdown.style = "height: 0px";
+                    dropdownOpen = false
+                } else {
+                    dropdownIco.style = "transform: translate(-50%, -50%) rotateZ(180deg);"
+                    dropdown.style = "height: 350px";
+                    dropdownOpen = true
                 }
             }
 
